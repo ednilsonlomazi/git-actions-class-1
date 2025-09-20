@@ -1,0 +1,21 @@
+name: Teste de Unidade Next.js
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  teste-unidade:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Chama action para instalar o Node.js 18.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+      - name: Instalar dependencias do Node
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Run Jest tests
+        run: npx jest
